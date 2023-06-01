@@ -1,0 +1,6 @@
+// format with deno
+{
+    "deno.enable": true,
+    "deno.unstable": true,
+    "editor.formatOnSave": true
+}
