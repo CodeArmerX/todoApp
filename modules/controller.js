@@ -1,5 +1,5 @@
 import { Input, Select, Confirm } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts"
-import { green, red } from "https://deno.land/std@0.183.0/fmt/colors.ts";
+import { black, green, red } from "https://deno.land/std@0.183.0/fmt/colors.ts";
 import { v4 } from 'npm:uuid'
 import * as mod from "https://deno.land/std@0.170.0/fmt/colors.ts";
 import { app } from "../app.js"
@@ -46,10 +46,12 @@ const listTask = async (data) => {
         ]
     })
     const mappedData = (filteredData) => {
+        console.log(mod.blue('---------------------------------'))
         filteredData.map((task, i) => {
             console.log(
                 `${green(`${i + 1}.`)} ${task?.name} > ${task?.completed ? green('Completada!') : red('Pendiente...')}`)
         })
+        console.log(mod.blue('---------------------------------'))
         alert(green('Tareas listadas exitosamente!'))
         return ''
     }
@@ -60,13 +62,13 @@ const listTask = async (data) => {
     if (listCondition === taskOptions.completed) {
         const filteredData = data.filter(({ completed }) => completed)
         filteredData.length === 0
-            ? console.log(red('No hay tareas completadas...'))
+            ? alert(red('No hay tareas completadas... Hay que trabajar!'))
             : console.log(mappedData(filteredData))
     }
     if (listCondition === taskOptions.pending) {
         const filteredData = data.filter(({ completed }) => !completed)
         filteredData.length === 0
-            ? console.log(red('No hay tareas pendientes...'))
+            ? alert(red('No hay tareas pendientes... Agrega una!'))
             : console.log(mappedData(filteredData))
     }
     app()
@@ -75,8 +77,8 @@ const listTask = async (data) => {
 const completeTask = async (data) => {
     const incompleteTask = data.filter(task => !task.completed)
     if (incompleteTask.length === 0) {
-        console.log('No hay tareas incompletas')
-        return
+        alert('No hay tareas incompletas... Agrega una!')
+        return app()
     }
     const options = incompleteTask.map(({ name, id }) => {
         return {
