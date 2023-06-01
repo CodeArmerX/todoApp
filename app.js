@@ -1,5 +1,5 @@
 // Todo app with deno
-import { Select } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
+import { Select } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts"
 import { createTask, completeTask, deleteTask, listTask } from "./modules/controller.js";
 export const app = async () => {
     const DATA = await JSON.parse(Deno.readTextFileSync('./database/data.json'))
