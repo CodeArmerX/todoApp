@@ -60,12 +60,14 @@ const listTask = async (data) => {
     if (listCondition === taskOptions.completed) {
         const filteredData = data.filter(({ completed }) => completed)
         filteredData.length === 0
-            ? console.log(mod.red('No hay tareas completadas...'))
+            ? console.log(red('No hay tareas completadas...'))
             : console.log(mappedData(filteredData))
     }
     if (listCondition === taskOptions.pending) {
         const filteredData = data.filter(({ completed }) => !completed)
-        console.log(mappedData(filteredData))
+        filteredData.length === 0
+            ? console.log(red('No hay tareas pendientes...'))
+            : console.log(mappedData(filteredData))
     }
     app()
 }
