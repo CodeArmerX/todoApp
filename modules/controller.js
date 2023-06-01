@@ -50,7 +50,8 @@ const listTask = async (data) => {
             console.log(
                 `${green(`${i + 1}.`)} ${task?.name} > ${task?.completed ? green('Completada!') : red('Pendiente...')}`)
         })
-        return alert(green('Tareas listadas exitosamente!'))
+        alert(green('Tareas listadas exitosamente!'))
+        return ''
     }
     // Conditions to list the tasks
     if (listCondition === taskOptions.all) {
