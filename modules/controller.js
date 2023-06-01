@@ -45,12 +45,12 @@ const listTask = async (data) => {
         ]
     })
     const mappedData = (filteredData) => {
-        console.log(blue('---------------------------------'))
+        console.log(magenta('---------------------------------'))
         filteredData.map((task, i) => {
             console.log(
                 `${green(`${i + 1}.`)} ${task?.name} ${magenta('->')} ${task?.completed ? green('Completada!') : red('Pendiente...')}`)
         })
-        console.log(blue('---------------------------------'))
+        console.log(magenta('---------------------------------'))
         alert(green('Tareas listadas exitosamente!'))
         return ''
     }
