@@ -1,7 +1,6 @@
 import { Input, Select, Confirm } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts"
-import { black, green, red } from "https://deno.land/std@0.183.0/fmt/colors.ts";
+import { magenta, blue, green, red } from "https://deno.land/std@0.183.0/fmt/colors.ts";
 import { v4 } from 'npm:uuid'
-import * as mod from "https://deno.land/std@0.170.0/fmt/colors.ts";
 import { app } from "../app.js"
 import { taskOptions } from './consts.js'
 
@@ -46,12 +45,12 @@ const listTask = async (data) => {
         ]
     })
     const mappedData = (filteredData) => {
-        console.log(mod.blue('---------------------------------'))
+        console.log(blue('---------------------------------'))
         filteredData.map((task, i) => {
             console.log(
-                `${green(`${i + 1}.`)} ${task?.name} > ${task?.completed ? green('Completada!') : red('Pendiente...')}`)
+                `${green(`${i + 1}.`)} ${task?.name} ${magenta('->')} ${task?.completed ? green('Completada!') : red('Pendiente...')}`)
         })
-        console.log(mod.blue('---------------------------------'))
+        console.log(blue('---------------------------------'))
         alert(green('Tareas listadas exitosamente!'))
         return ''
     }
@@ -77,7 +76,7 @@ const listTask = async (data) => {
 const completeTask = async (data) => {
     const incompleteTask = data.filter(task => !task.completed)
     if (incompleteTask.length === 0) {
-        alert('No hay tareas incompletas... Agrega una!')
+        alert(red('No hay tareas incompletas... Agrega una!'))
         return app()
     }
     const options = incompleteTask.map(({ name, id }) => {
